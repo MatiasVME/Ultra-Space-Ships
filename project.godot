@@ -11,7 +11,19 @@ config_version=3
 [application]
 
 config/name="Ultra Space Ships"
+run/main_scene="res://Game/MainScreens/Splash.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Main="*res://Game/Autoload/Main.gd"
+
+[display]
+
+window/size/width=800
+window/size/height=480
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
 
 [rendering]
 

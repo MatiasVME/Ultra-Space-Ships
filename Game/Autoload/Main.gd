@@ -1,4 +1,4 @@
 extends Node
 
-func _ready():
-	pass
+const RES_X = 800
+const RES_Y = 480
