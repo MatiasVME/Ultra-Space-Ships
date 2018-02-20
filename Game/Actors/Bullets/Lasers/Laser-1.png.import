@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/avatar.jpg-26404e6c6bcf1b626229882d1655e2ae.stex"
+path="res://.import/Laser-1.png-ef2c2b0edb378465ff403342820ee84c.stex"
 
 [deps]
 
-source_file="res://Game/MainScreens/Credits/avatar.jpg"
-source_md5="878f8c4c2e11e8a16e1a54f62c1ae966"
+source_file="res://Game/Actors/Bullets/Lasers/Laser-1.png"
+source_md5="bba9b80a3c5120318729b5c3c6cd3605"
 
-dest_files=[ "res://.import/avatar.jpg-26404e6c6bcf1b626229882d1655e2ae.stex" ]
-dest_md5="7c1e4ea8cb78b1ff0a8ac77907e08bc7"
+dest_files=[ "res://.import/Laser-1.png-ef2c2b0edb378465ff403342820ee84c.stex" ]
+dest_md5="4546bddc46b73fd44f5e1ad8ab9b4202"
 
 [params]
 
