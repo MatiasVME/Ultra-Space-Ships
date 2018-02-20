@@ -97,6 +97,9 @@ func _on_BadShip_body_entered( body ):
 		$Anim.play("damage")
 		life -= 1
 		
+		SoundManager.select_sound(int(rand_range(1,3) - 0.1))
+		SoundManager.play_sound()
+		
 		if life <= 0 and $Anim.assigned_animation != "dead":
 			mark_to_dead = true
 			$TimeToDead.start()

@@ -113,7 +113,7 @@ tracks/1/keys = {
 "values": [ -1080.0, 0.0 ]
 }
 
-[node name="BadShip" type="RigidBody2D" index="0" groups=[
+[node name="BadShip" type="RigidBody2D" groups=[
 "Enemies",
 ]]
 

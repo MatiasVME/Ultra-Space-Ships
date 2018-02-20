@@ -9,6 +9,10 @@ var move_y = 0
 
 var speed = 200
 
+func _ready():
+	randomize()
+	random_texture()
+
 func _physics_process(delta):
 	direction = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
 
@@ -32,6 +36,9 @@ func _physics_process(delta):
 		laser.global_position.y = $Image.global_position.y - 40
 		laser.global_position.x = $Image.global_position.x
 		get_parent().add_child(laser)
+		
+		SoundManager.select_sound(0)
+		SoundManager.play_sound()
 
 	move_and_collide(Vector2(move_x, move_y))
 	
@@ -58,3 +65,8 @@ func is_limited_down():
 		return true
 	
 	return false
+	
+func random_texture():
+	var texture_num = int(rand_range(1, 13) - 0.001)
+	var rec_texture = load(str("res://Game/Actors/Player/Players/Player", str(texture_num),".png"))
+	$Image.texture = rec_texture
