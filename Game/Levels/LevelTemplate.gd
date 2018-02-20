@@ -5,6 +5,9 @@ var is_win = false
 func _ready():
 	$CanvasLayer/ResultDisplay.text = "Level " + str(Main.current_level)
 	$Anim.play_backwards("show")
+	
+	if Main.get_player() == null:
+		Main.set_player($Player)
 
 func _on_IsWin_timeout():
 	if get_tree().get_nodes_in_group("Enemies").size() <= 0:

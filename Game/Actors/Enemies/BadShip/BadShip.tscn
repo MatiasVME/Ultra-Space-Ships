@@ -136,6 +136,7 @@ linear_damp = -1.0
 angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
+badship_rotation = -40
 
 [node name="Image" type="Sprite" parent="." index="0"]
 
