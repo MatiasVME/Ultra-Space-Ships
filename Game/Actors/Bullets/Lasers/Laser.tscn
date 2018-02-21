@@ -57,7 +57,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0.6, 0.7 ), Vector2( 1, 1 ), Vector2( 0.6, 0.7 ) ]
 }
 
-[node name="Laser" type="RigidBody2D" groups=[
+[node name="Laser" type="RigidBody2D" index="0" groups=[
 "Bullet",
 ]]
 
@@ -84,8 +84,7 @@ _sections_unfolded = [ "Collision" ]
 
 [node name="Image" type="Sprite" parent="." index="0"]
 
-rotation = 12.5664
-scale = Vector2( 1e-05, 1e-05 )
+scale = Vector2( 0.6, 0.7 )
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Transform" ]
 

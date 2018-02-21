@@ -3,7 +3,7 @@ extends Node
 const RES_X = 800
 const RES_Y = 480
 
-const LAST_LEVEL = 5
+const LAST_LEVEL = 6
 
 var is_over = false
 var current_level = 1

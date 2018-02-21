@@ -1,8 +1,12 @@
+# BadBossShip.gd
+
 extends RigidBody2D
 
-export (int) var badship_rotation = 0
-export (int) var max_life = 3
-export (int) var min_life = 1
+export (int) var max_life = 300
+export (int) var min_life = 300
+
+export (int) var max_wait_time = 0.3
+export (int) var min_wait_time = 0.2
 
 var rec_bullet = load("res://Game/Actors/Bullets/EnemyBullet/EnemyBullet.tscn")
 
@@ -26,6 +30,8 @@ var current_movement_y
 
 var first_impulse = true
 
+var rotated_fire = 0
+
 func _ready():
 	spawn_y = global_position.y
 	
@@ -35,11 +41,9 @@ func _ready():
 	randomize()
 	life = int(rand_range(min_life, max_life + 1) - 0.01)
 	
-	random_texture()
-	
 	$Anim.play("show")
 	
-	$TimeToFire.wait_time = rand_range(5, 10)
+	$TimeToFire.wait_time = rand_range(min_wait_time, max_wait_time)
 	$TimeToFire.start()
 	
 func _physics_process(delta):
@@ -83,7 +87,7 @@ func is_limit_left():
 func is_limit_right():
 	if global_position.x >= limit_right:
 		current_movement_x = MovementX.LEFT
-		apply_impulse(Vector2(0, 0), Vector2(-500, 0))
+		apply_impulse(Vector2(0, 0), Vector2(-500 * 4, 0))
 
 		return true
 		
@@ -104,15 +108,11 @@ func is_limit_down():
 		return true
 		
 	return false
-	
-func random_texture():
-	var texture_num = int(rand_range(1, 5) - 0.001)
-	var rec_texture = load(str("res://Game/Actors/Enemies/BadShip/BadShip-Skin-", str(texture_num),".png"))
-	$Image.texture = rec_texture
 
 func _on_BadShip_body_entered( body ):
 	if body.is_in_group("Bullet"):
-		$Anim.play("damage")
+		if not $Anim.assigned_animation == "dead":
+			$Anim.play("damage")
 		life -= 1
 		
 		SoundManager.select_sound(int(rand_range(1,3) - 0.1))
@@ -130,14 +130,29 @@ func _on_TimeToFire_timeout():
 	if not Main.enemies_can_fire:
 		return
 	
-	$TimeToFire.wait_time = rand_range(1, 8)
+	$TimeToFire.wait_time = rand_range(min_wait_time, max_wait_time)
+	
+	rotated_fire -= 20
 	
 	var bullet = rec_bullet.instance()
 	var dest = $Image.global_position
 	dest.y *= 2
 	var direction = (dest - $Image.global_position).normalized()
-	bullet.set_direction(direction.rotated(rotation))
+	bullet.set_direction(direction.rotated(rotation + deg2rad(rotated_fire)))
 	
 	bullet.global_position.y = $Image.global_position.y
 	bullet.global_position.x = $Image.global_position.x
 	get_parent().add_child(bullet)
+
+
+	# bullet2
+	
+	var bullet2 = rec_bullet.instance()
+	dest = $Image.global_position
+	dest.y *= 2
+	direction = (dest - $Image.global_position).normalized()
+	bullet2.set_direction(direction.rotated(rotation + deg2rad(rotated_fire - 180)))
+	
+	bullet2.global_position.y = $Image.global_position.y
+	bullet2.global_position.x = $Image.global_position.x
+	get_parent().add_child(bullet2)

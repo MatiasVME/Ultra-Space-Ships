@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Game/MainScreens/Menu.gd" type="Script" id=1]
 [ext_resource path="res://Game/Backgrounds/Background.tscn" type="PackedScene" id=2]
@@ -105,6 +105,14 @@ _sections_unfolded = [ "Font", "Settings" ]
 [sub_resource type="DynamicFont" id=4]
 
 size = 50
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 7 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="DynamicFont" id=5]
+
+size = 32
 use_mipmaps = false
 use_filter = false
 font_data = ExtResource( 7 )
@@ -394,6 +402,30 @@ process_mode = 1
 wait_time = 2.7
 one_shot = true
 autostart = true
+
+[node name="Version" type="Label" parent="." index="7"]
+
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -91.0
+margin_top = -36.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0.075442, 0.316406, 0.0482025, 1 )
+custom_colors/font_color_shadow = Color( 0.0158691, 0.0625, 0.0176907, 1 )
+text = "0.1.0"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_colors", "custom_fonts" ]
 
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_Start_pressed"]
 
