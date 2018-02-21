@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.stex"
+path="res://.import/EnemyMissile3.png-16c4554330900f2a78955dca36f081ca.stex"
 
 [deps]
 
-source_file="res://icon.png"
-source_md5="80e5b2b72b8b8a08cf4464b96ced5003"
+source_file="res://Game/Actors/Bullets/EnemyMissiles/EnemyMissile3.png"
+source_md5="1d162c6b79cb5c39715a1099f5df0cc3"
 
-dest_files=[ "res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.stex" ]
-dest_md5="9f6966f2e9d2420e8104b380127d5c81"
+dest_files=[ "res://.import/EnemyMissile3.png-16c4554330900f2a78955dca36f081ca.stex" ]
+dest_md5="0b845c68c1fd17bc8b6a996990800a5e"
 
 [params]
 

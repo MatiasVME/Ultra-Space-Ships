@@ -1,8 +1,8 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Game/Levels/LevelTemplate.gd" type="Script" id=1]
 [ext_resource path="res://Game/Backgrounds/Background.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Game/Actors/Player/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Game/HUD/HUD.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Game/Fonts/kenvector_future.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="SegmentShape2D" id=1]
@@ -23,9 +23,27 @@ custom_solver_bias = 0.0
 a = Vector2( 802, 0 )
 b = Vector2( 802, 480 )
 
+[sub_resource type="Animation" id=4]
+
+resource_name = "is_over"
+length = 4.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/Blue:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.0156863, 0.0156863, 0.0784314, 0 ), Color( 0.0156863, 0.0156863, 0.0784314, 1 ) ]
+}
+
 [sub_resource type="Animation" id=5]
 
-resource_name = "show"
 length = 4.0
 loop = false
 step = 0.1
@@ -54,7 +72,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 1.2, 1.2 ), Vector2( 1.16923, 1.16923 ), Vector2( 1.4, 1.4 ), Vector2( 1.31111, 1.31111 ), Vector2( 1.6, 1.6 ), Vector2( 1, 1 ), Vector2( 1, 1 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Blue:color")
+tracks/2/path = NodePath("CanvasLayer/Blue:color")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -66,7 +84,7 @@ tracks/2/keys = {
 "values": [ Color( 0.0156863, 0.0156863, 0.0784314, 0 ), Color( 0.0156863, 0.0156863, 0.0784314, 0 ), Color( 0.0156863, 0.0156863, 0.0784314, 1 ) ]
 }
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=6]
 
 size = 64
 use_mipmaps = false
@@ -74,7 +92,7 @@ use_filter = false
 font_data = ExtResource( 4 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[node name="LevelTemplate" type="Node"]
+[node name="LevelTemplate" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
@@ -83,21 +101,17 @@ script = ExtResource( 1 )
 layer = -1
 velocity = 100
 
-[node name="Player" parent="." index="1" instance=ExtResource( 3 )]
-
-position = Vector2( 400, 430 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="Edge" type="StaticBody2D" parent="." index="2"]
+[node name="Edge" type="StaticBody2D" parent="." index="1"]
 
 editor/display_folded = true
 input_pickable = false
-collision_layer = 1
-collision_mask = 1
+collision_layer = 2
+collision_mask = 2
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
+_sections_unfolded = [ "Collision" ]
 
 [node name="Collision1" type="CollisionShape2D" parent="Edge" index="0"]
 
@@ -108,29 +122,40 @@ _sections_unfolded = [ "Transform" ]
 
 shape = SubResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Edge" index="2"]
+[node name="Collision3" type="CollisionShape2D" parent="Edge" index="2"]
 
 shape = SubResource( 3 )
 
-[node name="IsWin" type="Timer" parent="." index="3"]
+[node name="IsWin" type="Timer" parent="." index="2"]
 
 process_mode = 1
 wait_time = 2.0
 one_shot = false
 autostart = true
 
-[node name="Anim" type="AnimationPlayer" parent="." index="4"]
+[node name="Anim" type="AnimationPlayer" parent="." index="3"]
 
 root_node = NodePath("..")
 autoplay = ""
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
+anims/is_over = SubResource( 4 )
 anims/show = SubResource( 5 )
 blend_times = [  ]
 _sections_unfolded = [ "Pause", "Playback Options" ]
 
-[node name="Blue" type="ColorRect" parent="." index="5"]
+[node name="HUD" parent="." index="4" instance=ExtResource( 3 )]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="5"]
+
+layer = 2
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+
+[node name="Blue" type="ColorRect" parent="CanvasLayer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -146,16 +171,7 @@ size_flags_vertical = 1
 color = Color( 0.0156863, 0.0156863, 0.0784314, 1 )
 _sections_unfolded = [ "Rect" ]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." index="6"]
-
-editor/display_folded = true
-layer = 1
-offset = Vector2( 0, 0 )
-rotation = 0.0
-scale = Vector2( 1, 1 )
-transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-
-[node name="ResultDisplay" type="Label" parent="CanvasLayer" index="0"]
+[node name="ResultDisplay" type="Label" parent="CanvasLayer" index="1"]
 
 anchor_left = 0.5
 anchor_top = 0.5
@@ -170,7 +186,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_shadow = Color( 0.207031, 0.207031, 0.207031, 1 )
 text = "You ----"
@@ -181,8 +197,17 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_colors" ]
 
+[node name="IsDead" type="Timer" parent="." index="6"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = true
+
 [connection signal="timeout" from="IsWin" to="." method="_on_IsWin_timeout"]
 
 [connection signal="animation_finished" from="Anim" to="." method="_on_Anim_animation_finished"]
+
+[connection signal="timeout" from="IsDead" to="." method="_on_IsDead_timeout"]
 
 

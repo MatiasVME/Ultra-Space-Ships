@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.stex"
+path="res://.import/Lifes2.png-d854f746c9e01866efe37f1f4be04082.stex"
 
 [deps]
 
-source_file="res://icon.png"
-source_md5="80e5b2b72b8b8a08cf4464b96ced5003"
+source_file="res://Game/HUD/Lifes/Lifes2.png"
+source_md5="ffc5b064484423762555d516e2971eaa"
 
-dest_files=[ "res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.stex" ]
-dest_md5="9f6966f2e9d2420e8104b380127d5c81"
+dest_files=[ "res://.import/Lifes2.png-d854f746c9e01866efe37f1f4be04082.stex" ]
+dest_md5="c1e8646876e239f398beb405ffc39084"
 
 [params]
 

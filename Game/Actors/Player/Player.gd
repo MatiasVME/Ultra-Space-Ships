@@ -12,8 +12,12 @@ var speed = 200
 func _ready():
 	randomize()
 	random_texture()
+	Main.player_is_inmortal = true
 
 func _physics_process(delta):
+	if not Main.player_can_move:
+		return
+	
 	direction = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
 
 	if direction == 1 and not is_limited_right():
@@ -70,3 +74,17 @@ func random_texture():
 	var texture_num = int(rand_range(1, 13) - 0.001)
 	var rec_texture = load(str("res://Game/Actors/Player/Players/Player", str(texture_num),".png"))
 	$Image.texture = rec_texture
+
+func _on_Anim_animation_finished( anim_name ):
+	if anim_name == "dead":
+		if Main.lifes > 1:
+			get_parent().create_player()
+			Main.player_can_move = true
+			Main.lifes -= 1
+			get_parent().get_node("HUD").update_life_board()
+		else:
+			Main.is_over = true
+		
+		queue_free()
+	elif anim_name == "start":
+		Main.player_is_inmortal = false

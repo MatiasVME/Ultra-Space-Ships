@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.stex"
+path="res://.import/cursor.png-6375bb7e6e8dda90905b9fd140c91992.stex"
 
 [deps]
 
-source_file="res://icon.png"
-source_md5="80e5b2b72b8b8a08cf4464b96ced5003"
+source_file="res://Game/Cursor/cursor.png"
+source_md5="f986a5e4f93ad5a3cdd524dd1186225e"
 
-dest_files=[ "res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.stex" ]
-dest_md5="9f6966f2e9d2420e8104b380127d5c81"
+dest_files=[ "res://.import/cursor.png-6375bb7e6e8dda90905b9fd140c91992.stex" ]
+dest_md5="1ea135acfd4a745a1ad721762d3875a3"
 
 [params]
 

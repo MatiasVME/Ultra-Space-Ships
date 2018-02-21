@@ -2,6 +2,8 @@ extends RigidBody2D
 
 export (int) var badship_rotation = 0
 
+var rec_bullet = load("res://Game/Actors/Bullets/EnemyBullet/EnemyBullet.tscn")
+
 var mark_to_dead = false
 var life
 
@@ -29,9 +31,14 @@ func _ready():
 	limit_left = $LimitLeft.global_position.x
 	
 	randomize()
-	life = int(rand_range(1, 4) - 0.01)
+	life = int(rand_range(1, 2) - 0.01) # temp
 	
 	random_texture()
+	
+	$Anim.play("show")
+	
+	$TimeToFire.wait_time = rand_range(5, 10)
+	$TimeToFire.start()
 	
 func _physics_process(delta):
 	adjust_increment_x()
@@ -83,7 +90,7 @@ func is_limit_right():
 func is_limit_up():
 	if global_position.y <= spawn_y - 40:
 		current_movement_y = MovementY.DOWN
-		apply_impulse(Vector2(0, 0), Vector2(0, 100))
+		apply_impulse(Vector2(0, 0), Vector2(0, 50))
 		return true
 		
 	return false
@@ -91,7 +98,7 @@ func is_limit_up():
 func is_limit_down():
 	if global_position.y >= spawn_y + 40:
 		current_movement_y = MovementY.UP
-		apply_impulse(Vector2(0, 0), Vector2(0, -100))
+		apply_impulse(Vector2(0, 0), Vector2(0, -50))
 		return true
 		
 	return false
@@ -114,8 +121,21 @@ func _on_BadShip_body_entered( body ):
 			$TimeToDead.start()
 			$Anim.play("dead")
 
-func _on_VisibilityNotifier2D_screen_entered():
-	$Anim.play("show")
-
 func _on_TimeToDead_timeout():
 	queue_free()
+
+func _on_TimeToFire_timeout():
+	if not Main.enemies_can_fire:
+		return
+	
+	$TimeToFire.wait_time = rand_range(1, 8)
+	
+	var bullet = rec_bullet.instance()
+	var dest = $Image.global_position
+	dest.y *= 2
+	var direction = (dest - $Image.global_position).normalized()
+	bullet.set_direction(direction.rotated(rotation))
+	
+	bullet.global_position.y = $Image.global_position.y
+	bullet.global_position.x = $Image.global_position.x
+	get_parent().add_child(bullet)

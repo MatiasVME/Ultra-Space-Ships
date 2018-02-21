@@ -118,8 +118,8 @@ tracks/1/keys = {
 ]]
 
 input_pickable = false
-collision_layer = 1
-collision_mask = 1
+collision_layer = 3
+collision_mask = 3
 mode = 0
 mass = 2.0
 friction = 1.0
@@ -136,6 +136,7 @@ linear_damp = -1.0
 angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
+_sections_unfolded = [ "Collision" ]
 badship_rotation = -40
 
 [node name="Image" type="Sprite" parent="." index="0"]
@@ -174,14 +175,17 @@ wait_time = 0.4
 one_shot = true
 autostart = false
 
-[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="." index="6"]
+[node name="TimeToFire" type="Timer" parent="." index="6"]
 
-rect = Rect2( -10, -10, 20, 20 )
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
 
 [connection signal="body_entered" from="." to="." method="_on_BadShip_body_entered"]
 
 [connection signal="timeout" from="TimeToDead" to="." method="_on_TimeToDead_timeout"]
 
-[connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
+[connection signal="timeout" from="TimeToFire" to="." method="_on_TimeToFire_timeout"]
 
 
