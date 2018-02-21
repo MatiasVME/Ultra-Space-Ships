@@ -31,7 +31,7 @@ func _ready():
 	limit_left = $LimitLeft.global_position.x
 	
 	randomize()
-	life = int(rand_range(1, 2) - 0.01) # temp
+	life = int(rand_range(1, 4) - 0.01)
 	
 	random_texture()
 	
