@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Game/MainScreens/Credits.gd" type="Script" id=1]
 [ext_resource path="res://Game/Backgrounds/Background.tscn" type="PackedScene" id=2]
@@ -71,6 +71,14 @@ use_filter = false
 font_data = ExtResource( 3 )
 _sections_unfolded = [ "Font", "Settings" ]
 
+[sub_resource type="DynamicFont" id=6]
+
+size = 22
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 3 )
+_sections_unfolded = [ "Font", "Settings" ]
+
 [node name="Credits" type="Node" index="0"]
 
 script = ExtResource( 1 )
@@ -94,6 +102,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 color = Color( 0.0196078, 0.0156863, 0.0823529, 0 )
+_sections_unfolded = [ "Anchor", "Focus", "Grow Direction", "Hint", "Margin", "Material", "Mouse", "Rect", "Size Flags", "Theme", "Visibility" ]
 
 [node name="Anim" type="AnimationPlayer" parent="." index="2"]
 
@@ -153,16 +162,20 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 custom_fonts/normal_font = SubResource( 3 )
 bbcode_enabled = true
-bbcode_text = "[center]Matías Muñoz Espinoza[/center]
-
-[center][url][Twitter][/url] [url][Github][/url] [url][Itch.io][/url][/center]"
+bbcode_text = "[center][color=red]Matías Muñoz Espinoza[/color]
+[url=https://github.com/MatiasVME][Github][/url] [url=https://furygames.itch.io][Itch.io][/url] [url=https://twitter.com/writkas][Twitter][/url]
+[color=red]Others[/color]
+Laser Sounds [url=https://opengameart.org/content/laser-fire][OGA][/url]
+[/center]"
 visible_characters = -1
 percent_visible = 1.0
 meta_underlined = true
 tab_size = 4
 text = "Matías Muñoz Espinoza
-
-[Twitter] [Github] [Itch.io]"
+[Github] [Itch.io] [Twitter]
+Others
+Laser Sounds [OGA]
+"
 scroll_active = true
 scroll_following = false
 selection_enabled = false
@@ -181,6 +194,7 @@ blend_times = [  ]
 
 [node name="Back" type="TextureButton" parent="." index="7"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 1.0
 anchor_right = 0.0
@@ -223,6 +237,31 @@ custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_shadow = Color( 0.5, 0.5, 0.5, 1 )
 text = "Back"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_colors", "custom_fonts" ]
+
+[node name="Jam" type="Label" parent="." index="8"]
+
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -132.0
+margin_top = -26.0
+margin_right = 132.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0.219951, 0.933594, 0.19693, 1 )
+custom_colors/font_color_shadow = Color( 0.152222, 0.90625, 0.676507, 1 )
+text = "#ArcadeGameJam"
 align = 1
 valign = 1
 percent_visible = 1.0
