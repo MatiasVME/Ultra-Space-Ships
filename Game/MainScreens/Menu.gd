@@ -11,4 +11,12 @@ func _on_Start_pressed():
 	Main.player_is_dead = false
 	Main.player_mark_to_dead = false
 	Main.is_over = false
+	
+	MusicManager.select_music(MusicManager.BATTLE)
+	MusicManager.play_music()
+	
 	get_tree().change_scene("res://Game/Levels/Level1.tscn")
+
+func _on_SoundMenu_timeout():
+	SoundManager.select_sound(SoundManager.MENU_SOUND)
+	SoundManager.play_sound()

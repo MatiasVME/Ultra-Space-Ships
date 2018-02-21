@@ -79,7 +79,7 @@ use_filter = false
 font_data = ExtResource( 3 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[node name="Credits" type="Node" index="0"]
+[node name="Credits" type="Node"]
 
 script = ExtResource( 1 )
 
@@ -151,9 +151,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 201.0
+margin_top = 112.0
 margin_right = 798.0
-margin_bottom = 300.0
+margin_bottom = 394.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = true
 mouse_filter = 0
@@ -164,6 +164,11 @@ custom_fonts/normal_font = SubResource( 3 )
 bbcode_enabled = true
 bbcode_text = "[center][color=red]Matías Muñoz Espinoza[/color]
 [url=https://github.com/MatiasVME][Github][/url] [url=https://furygames.itch.io][Itch.io][/url] [url=https://twitter.com/writkas][Twitter][/url]
+[color=red]Kenney[/color]
+Asset Kenney [url=https://kenney.nl/][Web][/url]
+[color=red]Music[/color]
+Intro [url=https://opengameart.org/content/interplanetary-odyssey][OGA][/url] [url=https://patrickdearteaga.com][Web][/url]
+Battle [url=https://opengameart.org/content/railjet-long-seamless-loop][OGA][/url] [url=http://www.nosoapradio.us][Web][/url]
 [color=red]Others[/color]
 Laser Sounds [url=https://opengameart.org/content/laser-fire][OGA][/url]
 [/center]"
@@ -173,6 +178,11 @@ meta_underlined = true
 tab_size = 4
 text = "Matías Muñoz Espinoza
 [Github] [Itch.io] [Twitter]
+Kenney
+Asset Kenney [Web]
+Music
+Intro [OGA] [Web]
+Battle [OGA] [Web]
 Others
 Laser Sounds [OGA]
 "
