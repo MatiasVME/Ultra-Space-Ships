@@ -11,6 +11,8 @@ func _ready():
 	create_player()
 	$HUD.update_life_board()
 	
+	update_score()
+	
 func _physics_process(delta):
 	# Cuando pierde
 	if Main.is_over and $Anim.assigned_animation != "is_over":
@@ -33,13 +35,24 @@ func reset_all(except_level = false):
 	
 	if not except_level:
 		Main.current_level = 1
+		
+func update_score():
+	$CanvasLayer/Score.text = str("Score: " + str(Main.score))
+	
+func save_high_score():
+	if DataManager.is_high_score(Main.score):
+		DataManager.new_score(Main.score)
+		print("ok")
 
 func _on_IsWin_timeout():
+	update_score()
+	
+	# Cuando pasa de nivel
 	if get_tree().get_nodes_in_group("Enemies").size() <= 0:
 		$CanvasLayer/ResultDisplay.text = "You Win"
 		
 		$Anim.play("show")
-		$IsWin.stop()
+		$UpdateLabels.stop()
 		is_win = true
 
 func _on_Anim_animation_finished( anim_name ):
@@ -50,7 +63,8 @@ func _on_Anim_animation_finished( anim_name ):
 		
 		if Main.current_level > Main.LAST_LEVEL:
 			reset_all(true)
-			get_tree().change_scene("res://Game/MainScreens/Credits.tscn")
+			save_high_score()
+			get_tree().change_scene("res://Game/MainScreens/Score.tscn")
 		
 		get_tree().change_scene(str("res://Game/Levels/Level" + str(Main.current_level) + ".tscn"))
 	elif anim_name == "show":
@@ -58,7 +72,8 @@ func _on_Anim_animation_finished( anim_name ):
 		Main.player_can_move = true
 	
 	if anim_name == "is_over":
-		get_tree().change_scene("res://Game/MainScreens/Menu.tscn")
+		save_high_score()
+		get_tree().change_scene("res://Game/MainScreens/Score.tscn")
 
 func _on_IsDead_timeout():
 	if Main.player_is_dead:

@@ -1,11 +1,16 @@
 extends RigidBody2D
 
+export (float) var life_time = 1
+export (int) var speed = 300
+
 var direction = null setget set_direction
 
 func _ready():
-	apply_impulse(Vector2(0,0), direction * 300)
+	apply_impulse(Vector2(0,0), direction * speed)
 	SoundManager.select_sound(SoundManager.ENEMY_BULLET)
 	SoundManager.play_sound()
+	
+	$LifeTime.wait_time = life_time
 
 func set_direction(_direction):
 	direction = _direction
@@ -21,7 +26,7 @@ func _on_EnemyBullet_body_entered( body ):
 		Main.player_mark_to_dead = true
 		
 		SoundManager.select_sound(SoundManager.GOOD_SHIP_DEAD)
-	SoundManager.play_sound()
+		SoundManager.play_sound()
 
 func _on_LifeTime_timeout():
 	$Anim.play("dead")

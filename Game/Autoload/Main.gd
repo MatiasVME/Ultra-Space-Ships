@@ -3,10 +3,11 @@ extends Node
 const RES_X = 800
 const RES_Y = 480
 
-const LAST_LEVEL = 6
+const LAST_LEVEL = 12
 
 var is_over = false
 var current_level = 1
+var score = 0
 
 var enemies_can_fire = false
 var player_can_move = false

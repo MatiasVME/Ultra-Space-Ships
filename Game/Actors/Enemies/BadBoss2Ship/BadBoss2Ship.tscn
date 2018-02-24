@@ -1,14 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Game/Actors/Enemies/BadShip/BadShip.gd" type="Script" id=1]
-[ext_resource path="res://Game/Actors/Enemies/BadShip/BadShip-Skin-1.png" type="Texture" id=2]
+[ext_resource path="res://Game/Actors/Enemies/BadBoss2Ship/BadBoss2Ship.gd" type="Script" id=1]
+[ext_resource path="res://Game/Actors/Enemies/BadBoss2Ship/Boss9.png" type="Texture" id=2]
 
-[sub_resource type="CircleShape2D" id=1]
-
-custom_solver_bias = 0.0
-radius = 24.9192
-
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 
 resource_name = "damage"
 length = 0.4
@@ -39,10 +34,10 @@ tracks/1/keys = {
 "values": [ Vector2( 0.6, 0.6 ), Vector2( 0.55, 0.55 ), Vector2( 0.6, 0.6 ) ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 
 resource_name = "dead"
-length = 0.4
+length = 3.0
 loop = false
 step = 0.1
 tracks/0/type = "value"
@@ -52,7 +47,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.4 ),
+"times": PoolRealArray( 0, 2, 3 ),
 "transitions": PoolRealArray( 4, 0.25, 4 ),
 "update": 0,
 "values": [ Vector2( 0.6, 0.6 ), Vector2( 0.7, 0.7 ), Vector2( 1e-05, 1e-05 ) ]
@@ -64,25 +59,13 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.4 ),
+"times": PoolRealArray( 0, 3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0.0, 1080.0 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Collision:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
+"values": [ 0.0, 1440.0 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 
 resource_name = "show"
 length = 1.0
@@ -113,17 +96,17 @@ tracks/1/keys = {
 "values": [ -1080.0, 0.0 ]
 }
 
-[node name="BadShip" type="RigidBody2D" index="0" groups=[
+[node name="BadBossShip" type="RigidBody2D" groups=[
 "Enemies",
 ]]
 
 input_pickable = false
 collision_layer = 3
 collision_mask = 3
-mode = 0
-mass = 2.0
+mode = 2
+mass = 30.0
 friction = 1.0
-bounce = 0.5
+bounce = 0.8
 gravity_scale = 1.0
 custom_integrator = false
 continuous_cd = 0
@@ -136,8 +119,12 @@ linear_damp = -1.0
 angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
-max_life = 3
-min_life = 1
+_sections_unfolded = [ "Collision" ]
+max_life = 150
+min_life = 150
+score_value = 100
+max_wait_time = 0.1
+min_wait_time = 0.3
 
 [node name="Image" type="Sprite" parent="." index="0"]
 
@@ -145,42 +132,43 @@ scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Collision" type="CollisionShape2D" parent="." index="1"]
-
-shape = SubResource( 1 )
-
-[node name="Anim" type="AnimationPlayer" parent="." index="2"]
+[node name="Anim" type="AnimationPlayer" parent="." index="1"]
 
 root_node = NodePath("..")
 autoplay = ""
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/damage = SubResource( 2 )
-anims/dead = SubResource( 3 )
-anims/show = SubResource( 4 )
+anims/damage = SubResource( 1 )
+anims/dead = SubResource( 2 )
+anims/show = SubResource( 3 )
 blend_times = [  ]
 
-[node name="LimitLeft" type="Position2D" parent="." index="3"]
+[node name="LimitLeft" type="Position2D" parent="." index="2"]
 
-position = Vector2( -300, 0 )
+position = Vector2( -400, 0 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="LimitRight" type="Position2D" parent="." index="4"]
+[node name="LimitRight" type="Position2D" parent="." index="3"]
 
-[node name="TimeToDead" type="Timer" parent="." index="5"]
+[node name="TimeToDead" type="Timer" parent="." index="4"]
 
 process_mode = 1
 wait_time = 0.4
 one_shot = true
 autostart = false
 
-[node name="TimeToFire" type="Timer" parent="." index="6"]
+[node name="TimeToFire" type="Timer" parent="." index="5"]
 
 process_mode = 1
-wait_time = 1.0
+wait_time = 0.1
 one_shot = false
 autostart = false
+
+[node name="Collision" type="CollisionPolygon2D" parent="." index="6"]
+
+build_mode = 0
+polygon = PoolVector2Array( -16, 32, 16, 32, 16.1443, 43.4298, 34.1895, 42.9897, 60.1569, 11.7407, 44.7525, -42.8351, -41.9525, -44.1554, -60.4378, 7.33939, -34.0302, 41.6693, -13.3442, 43.4298 )
 
 [connection signal="body_entered" from="." to="." method="_on_BadShip_body_entered"]
 

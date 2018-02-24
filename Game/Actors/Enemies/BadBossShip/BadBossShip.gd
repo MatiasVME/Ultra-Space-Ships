@@ -1,12 +1,6 @@
 # BadBossShip.gd
 
-extends RigidBody2D
-
-export (int) var max_life = 300
-export (int) var min_life = 300
-
-export (int) var max_wait_time = 0.3
-export (int) var min_wait_time = 0.2
+extends "../EnemyShip.gd"
 
 var rec_bullet = load("res://Game/Actors/Bullets/EnemyBullet/EnemyBullet.tscn")
 
@@ -33,6 +27,9 @@ var first_impulse = true
 var rotated_fire = 0
 
 func _ready():
+	self.max_wait_time = 0.3
+	self.min_wait_time = 0.2
+	
 	spawn_y = global_position.y
 	
 	limit_right = $LimitRight.global_position.x
