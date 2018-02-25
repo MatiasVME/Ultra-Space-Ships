@@ -10,8 +10,6 @@
 [node name="BadBossShip" parent="." index="1" instance=ExtResource( 2 )]
 
 position = Vector2( 544, 160 )
-max_life = 200
-min_life = 200
 score_value = 50
 max_wait_time = 1
 min_wait_time = 3

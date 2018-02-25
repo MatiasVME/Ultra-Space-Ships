@@ -5,6 +5,9 @@ const RES_Y = 480
 
 const LAST_LEVEL = 12
 
+var music_enable = false
+var sound_enable = false
+
 var is_over = false
 var current_level = 1
 var score = 0

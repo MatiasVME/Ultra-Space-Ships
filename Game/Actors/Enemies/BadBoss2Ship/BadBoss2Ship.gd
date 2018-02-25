@@ -121,6 +121,7 @@ func _on_BadShip_body_entered( body ):
 			$Anim.play("dead")
 
 func _on_TimeToDead_timeout():
+	Main.score += score_value
 	queue_free()
 
 func _on_TimeToFire_timeout():

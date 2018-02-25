@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Game/Autoload/SoundManager.gd" type="Script" id=1]
 [ext_resource path="res://Game/Sounds/Laser-Sound.ogg" type="AudioStream" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://Game/Sounds/MenuTitle.ogg" type="AudioStream" id=7]
 [ext_resource path="res://Game/Sounds/EnemyBullet.ogg" type="AudioStream" id=8]
 [ext_resource path="res://Game/Sounds/GoodShipDead.ogg" type="AudioStream" id=9]
+[ext_resource path="res://Game/Sounds/Rebound.ogg" type="AudioStream" id=10]
+[ext_resource path="res://Game/Sounds/Explosion.ogg" type="AudioStream" id=11]
 
 [node name="SoundManager" type="Node"]
 
@@ -74,6 +76,22 @@ bus = "Master"
 [node name="GoodShipDead" type="AudioStreamPlayer" parent="." index="7"]
 
 stream = ExtResource( 9 )
+volume_db = 0.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="Rebound" type="AudioStreamPlayer" parent="." index="8"]
+
+stream = ExtResource( 10 )
+volume_db = -10.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="Explosion" type="AudioStreamPlayer" parent="." index="9"]
+
+stream = ExtResource( 11 )
 volume_db = 0.0
 autoplay = false
 mix_target = 0

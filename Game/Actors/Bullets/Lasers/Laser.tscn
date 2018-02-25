@@ -22,7 +22,7 @@ tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( -4, -4 ),
+"transitions": PoolRealArray( 4, -4 ),
 "update": 0,
 "values": [ Vector2( 0.6, 0.7 ), Vector2( 1e-05, 1e-05 ) ]
 }
@@ -34,7 +34,7 @@ tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
 "times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( -4, -4 ),
+"transitions": PoolRealArray( 4, -4 ),
 "update": 0,
 "values": [ 0.0, 720.0 ]
 }
@@ -58,6 +58,7 @@ tracks/0/keys = {
 }
 
 [node name="Laser" type="RigidBody2D" index="0" groups=[
+"PlayerBullet",
 "Bullet",
 ]]
 

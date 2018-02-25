@@ -7,6 +7,9 @@ enum Music {INTRO, BATTLE}
 var current_music = null
 
 func select_music(p_music):
+	if not Main.music_enable:
+		return
+	
 	if current_music != null:
 		current_music.stop()
 	
@@ -17,9 +20,15 @@ func select_music(p_music):
 			current_music = battle
 		
 func play_music():
+	if not Main.music_enable:
+		return
+	
 	if current_music != null:
 		current_music.play()
 		
 func stop_music():
+	if not Main.music_enable:
+		return
+	
 	if current_music != null:
 		current_music.stop()

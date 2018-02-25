@@ -110,6 +110,7 @@ func _on_BadShip_body_entered( body ):
 	if body.is_in_group("Bullet"):
 		if not $Anim.assigned_animation == "dead":
 			$Anim.play("damage")
+			
 		life -= 1
 		
 		SoundManager.select_sound(int(rand_range(1,3) - 0.1))
@@ -121,6 +122,7 @@ func _on_BadShip_body_entered( body ):
 			$Anim.play("dead")
 
 func _on_TimeToDead_timeout():
+	Main.score += score_value
 	queue_free()
 
 func _on_TimeToFire_timeout():

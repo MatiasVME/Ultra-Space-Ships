@@ -1,12 +1,40 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Game/Actors/Bullets/EnemyBullet/EnemyBullet.gd" type="Script" id=1]
 [ext_resource path="res://Game/Actors/Bullets/EnemyBullet/EnemyBullet.png" type="Texture" id=2]
+[ext_resource path="res://Game/Actors/Effects/Smoke-1.png" type="Texture" id=3]
+[ext_resource path="res://Game/Actors/Effects/Smoke-2.png" type="Texture" id=4]
+[ext_resource path="res://Game/Actors/Effects/Smoke-3.png" type="Texture" id=5]
+[ext_resource path="res://Game/Actors/Effects/Smoke-4.png" type="Texture" id=6]
+[ext_resource path="res://Game/Actors/Effects/Smoke-5.png" type="Texture" id=7]
+[ext_resource path="res://Game/Actors/Effects/Smoke-6.png" type="Texture" id=8]
+[ext_resource path="res://Game/Actors/Effects/Smoke-7.png" type="Texture" id=9]
+[ext_resource path="res://Game/Actors/Effects/Smoke-8.png" type="Texture" id=10]
+[ext_resource path="res://Game/Actors/Effects/Smoke-9.png" type="Texture" id=11]
 
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 7.28757
+
+[sub_resource type="Animation" id=3]
+
+resource_name = "can_explode"
+length = 0.1
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Image:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.359375, 0.359375, 0.359375, 1 ) ]
+}
 
 [sub_resource type="Animation" id=2]
 
@@ -27,7 +55,62 @@ tracks/0/keys = {
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 1e-05, 1e-05 ) ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=6]
+
+resource_name = "explode"
+length = 0.4
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Smoke:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Smoke:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 8 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Smoke:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 4, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Image:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
 
 length = 0.3
 loop = false
@@ -44,6 +127,15 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 0.2, 0.2 ), Vector2( 0.5, 0.5 ) ]
 }
+
+[sub_resource type="SpriteFrames" id=5]
+
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": false,
+"name": "smoke",
+"speed": 15.0
+} ]
 
 [node name="EnemyBullet" type="RigidBody2D"]
 
@@ -66,7 +158,7 @@ linear_damp = -1.0
 angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision" ]
+_sections_unfolded = [ "Collision", "Transform", "Visibility" ]
 life_time = 1
 speed = 300
 
@@ -74,7 +166,7 @@ speed = 300
 
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="Collision" type="CollisionShape2D" parent="." index="1"]
 
@@ -87,8 +179,10 @@ autoplay = "start"
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
+anims/can_explode = SubResource( 3 )
 anims/dead = SubResource( 2 )
-anims/start = SubResource( 3 )
+anims/explode = SubResource( 6 )
+anims/start = SubResource( 4 )
 blend_times = [  ]
 
 [node name="LifeTime" type="Timer" parent="." index="3"]
@@ -97,6 +191,15 @@ process_mode = 1
 wait_time = 1.0
 one_shot = true
 autostart = true
+
+[node name="Smoke" type="AnimatedSprite" parent="." index="4"]
+
+visible = false
+frames = SubResource( 5 )
+animation = "smoke"
+frame = 8
+playing = true
+_sections_unfolded = [ "Visibility" ]
 
 [connection signal="body_entered" from="." to="." method="_on_EnemyBullet_body_entered"]
 
