@@ -35,6 +35,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 0.359375, 0.359375, 0.359375, 1 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Image:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 0.5, 0.5 ) ]
+}
 
 [sub_resource type="Animation" id=3]
 
@@ -217,7 +229,7 @@ autostart = true
 
 [node name="Smoke" type="AnimatedSprite" parent="." index="4"]
 
-modulate = Color( 1, 1, 1, 0 )
+visible = false
 frames = SubResource( 6 )
 animation = "smoke"
 frame = 8
