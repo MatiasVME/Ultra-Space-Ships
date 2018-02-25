@@ -8,7 +8,7 @@ export (int) var score_value = 5
 export (float) var max_wait_time = 1
 export (float) var min_wait_time = 3
 
-export (int) var one_of_each = 40
+export (int) var one_of_each = 30
 
 func _ready():
 	randomize()

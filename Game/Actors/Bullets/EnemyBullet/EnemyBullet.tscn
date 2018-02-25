@@ -17,7 +17,7 @@
 custom_solver_bias = 0.0
 radius = 7.28757
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 
 resource_name = "can_explode"
 length = 0.1
@@ -36,10 +36,9 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 0.359375, 0.359375, 0.359375, 1 ) ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=3]
 
-resource_name = "dead"
-length = 0.4
+length = 0.2
 loop = false
 step = 0.1
 tracks/0/type = "value"
@@ -49,13 +48,25 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
+"times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( -4, -4 ),
 "update": 0,
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 1e-05, 1e-05 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Collision:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=4]
 
 resource_name = "explode"
 length = 0.4
@@ -110,7 +121,7 @@ tracks/3/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 
 length = 0.3
 loop = false
@@ -127,8 +138,20 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 0.2, 0.2 ), Vector2( 0.5, 0.5 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Collision:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
-[sub_resource type="SpriteFrames" id=5]
+[sub_resource type="SpriteFrames" id=6]
 
 animations = [ {
 "frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
@@ -179,10 +202,10 @@ autoplay = "start"
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/can_explode = SubResource( 3 )
-anims/dead = SubResource( 2 )
-anims/explode = SubResource( 6 )
-anims/start = SubResource( 4 )
+anims/can_explode = SubResource( 2 )
+anims/dead = SubResource( 3 )
+anims/explode = SubResource( 4 )
+anims/start = SubResource( 5 )
 blend_times = [  ]
 
 [node name="LifeTime" type="Timer" parent="." index="3"]
@@ -194,8 +217,8 @@ autostart = true
 
 [node name="Smoke" type="AnimatedSprite" parent="." index="4"]
 
-visible = false
-frames = SubResource( 5 )
+modulate = Color( 1, 1, 1, 0 )
+frames = SubResource( 6 )
 animation = "smoke"
 frame = 8
 playing = true

@@ -105,7 +105,7 @@ use_filter = false
 font_data = ExtResource( 4 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[node name="LevelTemplate" type="Node"]
+[node name="LevelTemplate" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
@@ -167,7 +167,6 @@ _sections_unfolded = [ "Pause", "Playback Options" ]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." index="5"]
 
-editor/display_folded = true
 layer = 2
 offset = Vector2( 0, 0 )
 rotation = 0.0

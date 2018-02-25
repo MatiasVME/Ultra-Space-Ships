@@ -64,6 +64,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [ 0.0, 1440.0 ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("Collision:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [sub_resource type="Animation" id=3]
 
@@ -95,8 +107,20 @@ tracks/1/keys = {
 "update": 0,
 "values": [ -1080.0, 0.0 ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("Collision:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
-[node name="BadBossShip" type="RigidBody2D" groups=[
+[node name="BadBossShip2" type="RigidBody2D" groups=[
 "Enemies",
 ]]
 
@@ -125,6 +149,7 @@ min_life = 150
 score_value = 100
 max_wait_time = 0.1
 min_wait_time = 0.3
+one_of_each = 30
 
 [node name="Image" type="Sprite" parent="." index="0"]
 
@@ -154,7 +179,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="TimeToDead" type="Timer" parent="." index="4"]
 
 process_mode = 1
-wait_time = 0.4
+wait_time = 3.0
 one_shot = true
 autostart = false
 

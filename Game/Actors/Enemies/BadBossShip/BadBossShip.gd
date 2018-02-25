@@ -120,6 +120,7 @@ func _on_BadShip_body_entered( body ):
 			mark_to_dead = true
 			$TimeToDead.start()
 			$Anim.play("dead")
+			Main.enemies_can_fire = false
 
 func _on_TimeToDead_timeout():
 	Main.score += score_value

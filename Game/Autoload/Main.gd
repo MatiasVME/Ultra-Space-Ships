@@ -3,7 +3,7 @@ extends Node
 const RES_X = 800
 const RES_Y = 480
 
-const LAST_LEVEL = 12
+const LAST_LEVEL = 18
 
 var music_enable = true
 var sound_enable = true

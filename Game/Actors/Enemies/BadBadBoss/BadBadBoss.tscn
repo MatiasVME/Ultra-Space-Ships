@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Game/Actors/Enemies/BadBossShip/BadBossShip.gd" type="Script" id=1]
-[ext_resource path="res://Game/Actors/Enemies/BadBossShip/Boss5.png" type="Texture" id=2]
+[ext_resource path="res://Game/Actors/Enemies/BadBadBoss/BadBadBoss.gd" type="Script" id=1]
+[ext_resource path="res://Game/Actors/Enemies/BadBadBoss/Boss1.png" type="Texture" id=2]
 
 [sub_resource type="Animation" id=1]
 
@@ -64,18 +64,6 @@ tracks/1/keys = {
 "update": 0,
 "values": [ 0.0, 1440.0 ]
 }
-tracks/2/type = "value"
-tracks/2/path = NodePath("Collision:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
 
 [sub_resource type="Animation" id=3]
 
@@ -107,30 +95,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [ -1080.0, 0.0 ]
 }
-tracks/2/type = "value"
-tracks/2/path = NodePath("Collision:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
 
-[node name="BadBossShip" type="RigidBody2D" groups=[
+[node name="BadBossShip2" type="RigidBody2D" groups=[
 "Enemies",
 ]]
 
 input_pickable = false
 collision_layer = 3
 collision_mask = 3
-mode = 0
-mass = 20.0
+mode = 2
+mass = 30.0
 friction = 1.0
-bounce = 0.5
+bounce = 0.8
 gravity_scale = 1.0
 custom_integrator = false
 continuous_cd = 0
@@ -144,11 +120,11 @@ angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision" ]
-max_life = 300
-min_life = 300
+max_life = 600
+min_life = 600
 score_value = 5
-max_wait_time = 0.3
-min_wait_time = 0.2
+max_wait_time = 1
+min_wait_time = 3
 one_of_each = 30
 
 [node name="Image" type="Sprite" parent="." index="0"]
@@ -171,7 +147,7 @@ blend_times = [  ]
 
 [node name="LimitLeft" type="Position2D" parent="." index="2"]
 
-position = Vector2( -300, 0 )
+position = Vector2( -400, 0 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="LimitRight" type="Position2D" parent="." index="3"]
@@ -190,10 +166,10 @@ wait_time = 0.1
 one_shot = false
 autostart = false
 
-[node name="Collision" type="CollisionPolygon2D" parent="." index="6"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="6"]
 
 build_mode = 0
-polygon = PoolVector2Array( -57.16, 17.0695, -55.8332, -8.80396, -81.0432, -86.4242, -68.4382, -91.7316, -20.0085, -29.37, 18.4699, -29.37, 70.2168, -91.0682, 79.5047, -83.7705, 56.9484, -6.8137, 58.2752, 15.7426, 102.724, 53.5576, 99.4073, 88.7189, 74.1973, 92.036, 18.4699, 31.0013, -16.6913, 31.6647, -75.0724, 90.0458, -98.9556, 88.0555, -102.273, 51.5674 )
+polygon = PoolVector2Array( -12.6229, 58.5025, 12.7988, 58.5025, 21.5375, 32.6835, 36.6317, 32.2863, 59.6701, -51.1287, -60.6858, -51.5259, -37.6474, 32.2863, -22.156, 31.4919 )
 
 [connection signal="body_entered" from="." to="." method="_on_BadShip_body_entered"]
 

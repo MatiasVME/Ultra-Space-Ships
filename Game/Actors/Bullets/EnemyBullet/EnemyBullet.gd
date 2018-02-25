@@ -36,7 +36,7 @@ func _on_EnemyBullet_body_entered( body ):
 	if body.is_in_group("PlayerBullet") and not is_explosive:
 		is_explosive = true
 		$Anim.play("can_explode")
-		$LifeTime.wait_time += 0.5
+		$LifeTime.wait_time += 1
 		self.set_collision_layer_bit(0, true)
 		
 		SoundManager.select_sound(SoundManager.REBOUND)
@@ -44,7 +44,7 @@ func _on_EnemyBullet_body_entered( body ):
 		
 	elif is_explosive and body.is_in_group("Enemies") and not explode:
 		$Anim.play("explode")
-		body.life -= 5
+		body.life -= 10
 		body.score_value += 2
 		explode = true
 		

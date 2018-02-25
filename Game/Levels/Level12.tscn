@@ -10,8 +10,7 @@
 [node name="BadBossShip" parent="." index="1" instance=ExtResource( 2 )]
 
 position = Vector2( 576, 144 )
-max_life = 250
-min_life = 250
-one_of_each = 40
+max_life = 10
+min_life = 10
 
 
