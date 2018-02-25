@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Game/Autoload/SoundManager.gd" type="Script" id=1]
 [ext_resource path="res://Game/Sounds/Laser-Sound.ogg" type="AudioStream" id=2]
@@ -11,6 +11,9 @@
 [ext_resource path="res://Game/Sounds/GoodShipDead.ogg" type="AudioStream" id=9]
 [ext_resource path="res://Game/Sounds/Rebound.ogg" type="AudioStream" id=10]
 [ext_resource path="res://Game/Sounds/Explosion.ogg" type="AudioStream" id=11]
+[ext_resource path="res://Game/Sounds/ConsumeLife.ogg" type="AudioStream" id=12]
+[ext_resource path="res://Game/Sounds/Drop.ogg" type="AudioStream" id=13]
+[ext_resource path="res://Game/Sounds/Nope.ogg" type="AudioStream" id=14]
 
 [node name="SoundManager" type="Node"]
 
@@ -93,6 +96,30 @@ bus = "Master"
 
 stream = ExtResource( 11 )
 volume_db = 0.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="ConsumeLife" type="AudioStreamPlayer" parent="." index="10"]
+
+stream = ExtResource( 12 )
+volume_db = 0.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="Drop" type="AudioStreamPlayer" parent="." index="11"]
+
+stream = ExtResource( 13 )
+volume_db = 0.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="Nope" type="AudioStreamPlayer" parent="." index="12"]
+
+stream = ExtResource( 14 )
+volume_db = 10.0
 autoplay = false
 mix_target = 0
 bus = "Master"

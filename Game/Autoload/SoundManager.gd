@@ -10,6 +10,9 @@ onready var enemy_bullet = $EnemyBullet
 onready var good_ship_dead = $GoodShipDead
 onready var rebound = $Rebound
 onready var explosion = $Explosion
+onready var consume_life = $ConsumeLife
+onready var drop = $Drop
+onready var nope = $Nope
 
 enum Sound {
 	LASER,
@@ -21,7 +24,10 @@ enum Sound {
 	ENEMY_BULLET,
 	GOOD_SHIP_DEAD,
 	REBOUND,
-	EXPLOSION
+	EXPLOSION,
+	CONSUME_LIFE,
+	DROP,
+	NOPE
 }
 var current_sound = null
 
@@ -50,6 +56,12 @@ func select_sound(sound):
 			current_sound = rebound
 		Sound.EXPLOSION:
 			current_sound = explosion
+		Sound.CONSUME_LIFE:
+			current_sound = consume_life
+		Sound.DROP:
+			current_sound = drop
+		Sound.NOPE:
+			current_sound = nope
 		
 func play_sound():
 	if not Main.sound_enable:

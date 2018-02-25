@@ -1,5 +1,10 @@
 extends CanvasLayer
 
+func _physics_process(delta):
+	if Main.update_life_board:
+		update_life_board()
+		Main.update_life_board = false
+
 func update_life_board():
 	match Main.lifes:
 		0:

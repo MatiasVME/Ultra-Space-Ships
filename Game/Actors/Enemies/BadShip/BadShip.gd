@@ -122,6 +122,7 @@ func _on_BadShip_body_entered( body ):
 func _on_TimeToDead_timeout():
 	# Cuando muere completamente
 	Main.score += score_value
+	drop_life_if_can()
 	
 	queue_free()
 
